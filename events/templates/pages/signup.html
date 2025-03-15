@@ -1,0 +1,29 @@
+{% extends "pages/dashboard.html" %}
+{% load static %}
+{% block title %}Details{% endblock title %}
+{% block participants %}
+    <div class=" text-7xl"><p class=" flex justify-center font-bold">SIGN UP PARTICIPANTS</p></div>
+    <div class="table-container bg-white  drop-shadow-xs mx-7 my-10 border-b border-gray-100 text-gray-500 mb-2">
+    
+        <div class="">
+            {% if message %}
+            <p class="m-20 bg-rose-600 text-white font-bold px-2 py-1">{{message}}!</p>
+            {% endif %}
+        </div>
+    
+        
+
+    <div class="mx-auto w-2/3">
+        <form method="POST">
+            {% csrf_token %}
+           <div class=" p-20 font-semibold">{{formi}}</div>
+           <div class="mb-10">
+            <button class="mx-20  px-2 py-1 bg-blue-200 text-blue-600 font-semibold" type="submit">Submit</button>
+           
+           </div>
+    
+    
+        </form>
+    </div>
+    
+{% endblock participants %}

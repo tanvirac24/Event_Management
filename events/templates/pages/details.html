@@ -1,0 +1,99 @@
+{% extends "pages/dashboard.html" %}
+{% load static %}
+{% block title %}Details{% endblock title %}
+{% block detail %}
+
+  <div class="mx-7 mb-4 mt-7 text-3xl font-bold">
+    <h1>{{event.title}}</h1>
+  </div>
+  <div class="mx-7 mb-7 border-2 border-indigo-300 rounded">
+    <img src="{% static 'images/im1.jpg' %}" alt="" class="w-full h-80">
+  </div>
+  
+ 
+
+   <div class="mx-7 mb-2 text-3xl font-bold">
+    <h1>Details:</h1>
+  </div>
+  <div class="table-container bg-white  drop-shadow-xs mx-7 border-b border-gray-100 text-gray-500 mb-2">
+ {% comment %} 200words {% endcomment %}
+ <p class="p-4">{{event.description}}</p>
+
+</div>
+<div class="w-2/3 mx-5">
+    <div class="cart-container p-2 grid grid-cols-3 gap-2 mb-8 ">
+        
+        
+        <div class="cart-1  bg-white p-1 shadow-sm">
+            <h3 class="text-2xl font-medium text-black mb-2 text-center">Date</h3>
+           
+            <div class="flex justify-between border-2 border-gray-300  p-2">
+                <div>
+                    <p class="text-2xl text-gray-400 font-semibold mb-1">{{event.due_date}}</p>
+                   
+                </div>
+                <div class="clipboard-icon rounded-full bg-blue-100 h-10 w-10 flex justify-center item-center p-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z" />
+                      </svg>
+                      
+                      
+                </div>
+    
+            </div>
+        </div>
+        <div class="cart-2 bg-white p-1 shadow-sm ">
+            <h3 class="text-2xl font-medium text-black mb-2 text-center">Catagory</h3>
+            <div class="flex justify-between  border-2 border-gray-300 p-2">
+                <div>
+                    <p class="text-2xl text-gray-400 font-semibold mb-1">{{event.catagory}}</p>
+                   
+                </div>
+                <div class="clipboard-icon rounded-full bg-yellow-100 h-10 w-10 flex justify-center item-center p-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8 text-yellow-600">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                      </svg>
+                      
+                      
+                </div>
+    
+            </div>
+        </div>
+        <div class="cart-3  bg-white p-1 shadow-sm text-center ">
+            <h3 class="text-2xl font-medium text-black mb-2">Location</h3>
+            <div class="flex justify-between border-2 border-gray-300 p-2">
+                <div>
+                    <p class="text-xl text-gray-400 font-semibold mb-1">{{event.location}}</p>
+                    
+                </div>
+                <div class="clipboard-icon rounded-full bg-green-100 h-10 w-10 flex justify-center item-center p-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                      </svg>
+                      
+                      
+                      
+                      
+                </div>
+    
+            </div>
+        </div>
+       
+
+
+    </div>
+   </div> 
+   <div class="mx-7 mb-3 text-3xl font-bold">
+    <h1>All Participants:</h1></div>
+   <div class="cart-container p-6 grid grid-cols-4 gap-5 mb-8 table-container bg-white  drop-shadow-xs mx-7  border-gray-100 text-gray-500 mb-2">
+    {% for participant in event.assigned_to.all %}
+        <p>{{ participant.name }}</p>
+    {% empty %}
+        <p>Bro, There is No Participant</p>
+    {% endfor %}
+    
+    
+    </div>
+
+{% endblock detail%}

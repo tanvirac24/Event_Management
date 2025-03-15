@@ -1,0 +1,163 @@
+
+{% extends "pages/dashboard.html" %}
+{% load static %}
+{% block title %}Event Management{% endblock title %}
+{% block tasks %}
+
+   
+        <div class="cart-container p-6 grid grid-cols-5 gap-5 mb-8 ">
+        
+      
+            <div class="cart-1  bg-white p-4 shadow-sm">
+                <h3 class="text-xl font-medium text-gray-500 mb-4">Total Participants.</h3>
+                <div class="flex justify-between">
+                    <div>
+                        <p class="text-3xl font-bold mb-1">{{total_person}}</p>
+                       
+                    </div>
+                    <div class="clipboard-icon rounded-full bg-blue-100 h-10 w-10 flex justify-center item-center p-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8 text-blue-600">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.666 3.888A2.25 2.25 0 0 0 13.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 0 1-.75.75H9a.75.75 0 0 1-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 0 1-2.25 2.25H6.75A2.25 2.25 0 0 1 4.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 0 1 1.927-.184" />
+                          </svg>
+                          
+                    </div>
+        
+                </div>
+            </div> 
+        
+            <a href="{% url "home" %}">
+            <div class="cart-2  bg-white p-4 shadow-sm">
+                <h3 class="text-xl font-medium text-gray-500 mb-4">Total Events.</h3>
+                <div class="flex justify-between">
+                    <div>
+                        <p class="text-3xl font-bold mb-1">{{total_event}}</p>
+                       
+                    </div>
+                    <div class="clipboard-icon rounded-full bg-yellow-100 h-10 w-10 flex justify-center item-center p-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8 text-yellow-600">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                          </svg>
+                          
+                          
+                    </div>
+        
+                </div>
+            </div>
+            
+         </a>
+        <a href="{% url "home" %}?type=upcoming">
+            <div class="cart-3  bg-white p-4 shadow-sm">
+                <h3 class="text-xl font-medium text-gray-500 mb-4">Upcoming Events</h3>
+                <div class="flex justify-between">
+                    <div>
+                        <p class="text-3xl font-bold mb-1">{{upcoming}}</p>
+                        
+                    </div>
+                    <div class="clipboard-icon rounded-full bg-green-100 h-10 w-10 flex justify-center item-center p-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8 text-green-600">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                          </svg>
+                          
+                          
+                    </div>
+        
+                </div>
+            </div>
+           
+        </a>
+            <a href="{% url "home" %}?type=ended">
+                <div class="cart-4  bg-white p-4 shadow-sm">
+                    <h3 class="text-xl font-medium text-gray-500 mb-4">Past Events.</h3>
+                    <div class="flex justify-between">
+                        <div>
+                            <p class="text-3xl font-bold mb-1">{{past_events}}</p>
+                            
+                        </div>
+                        <div class="clipboard-icon rounded-full bg-violet-100 h-10 w-10 flex justify-center item-center p-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8 text-violet-600">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.666 3.888A2.25 2.25 0 0 0 13.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 0 1-.75.75H9a.75.75 0 0 1-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 0 1-2.25 2.25H6.75A2.25 2.25 0 0 1 4.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 0 1 1.927-.184" />
+                              </svg> 
+                              
+                        </div>
+            
+                    </div>
+                </div>
+        
+        
+        
+           
+            
+                
+
+            </a>
+        
+        
+        </a>
+            <a href="{% url "home" %}?type=running">
+                <div class="cart-4  bg-white p-4 shadow-sm">
+                    <h3 class="text-xl font-medium text-gray-500 mb-4">Today's Event</h3>
+                    <div class="flex justify-between">
+                        <div>
+                            <p class="text-3xl font-bold mb-1">{{running_events}}</p>
+                            
+                        </div>
+                        <div class="clipboard-icon rounded-full bg-violet-100 h-10 w-10 flex justify-center item-center p-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8 text-violet-600">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.666 3.888A2.25 2.25 0 0 0 13.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 0 1-.75.75H9a.75.75 0 0 1-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 0 1-2.25 2.25H6.75A2.25 2.25 0 0 1 4.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 0 1 1.927-.184" />
+                              </svg> 
+                              
+                        </div>
+            
+                    </div>
+                </div>
+        
+        
+        
+            
+            
+            </a>    
+        </div>
+            
+            <div class="mx-5 flex justify-center font-semibold text-3xl bg-orange-500  p-2 mt-2 text-white mb-2 shadow-xl">
+               Events
+            </div>
+
+    <div class="table-container bg-white  shadow-sm mx-5 border-b border-gray-100 text-sm mb-6">
+        <div class="divide-y divide-gray-200">
+        <div class="table-heading grid grid-cols-4 gap-7 p-6 text-gray-500">
+            <div class="">EVENT TITLE</div>
+            <div class="">EVENT STATUS</div>
+            <div class="">PARTICIPANTS</div>
+            <div class="">Will Be Held</div>
+            </div>
+            
+            {% for t in events %}
+            <div class="table-1 grid grid-cols-4 px-6 py-4">
+                
+                <div class="flex items-center">
+                   <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+               <div class=""><p class="font-bold px-3 text-lg">{{t.title}}</p></div>
+                </div>
+               
+                   
+           <div class="flex justify-start items-center"><span class="px-2 py-1 bg-blue-100 text-blue-600 rounded-xl font-semibold">{{t.status}}</span></div>
+           <div class="flex -space-x-2 px-8">
+               <div class="h-11 w-11 bg-black rounded-full text-white font-semibold flex justify-center items-center  text-xl">{{t.assigned_to.count}}</div>
+              
+               
+           </div>
+           <div class="flex items-center px-5"><span class="text-gray-500 ">{{t.due_date}}</span></div> 
+           
+       </div>
+        {% endfor %}    
+            
+          
+          
+            </div>
+
+    
+    </div>
+
+
+   
+    {% endblock tasks %}
