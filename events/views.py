@@ -21,7 +21,7 @@ def home(request):
     
     total_event=events.count()
     total_person=person.count()
-    upcoming=events.filter(status="UPCOMING").count()
+    upcoming=events.filter(Q(status="RUNNING") |Q(due_date__gt=date.today())).count()
     past_events=events.filter(status="ENDED").count()
     running_events=events.filter(Q(status="RUNNING") |Q(due_date=date.today())).count()
 
