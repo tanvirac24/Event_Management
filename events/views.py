@@ -267,3 +267,6 @@ def search(request):
        context = {"events": events, 
                   "query": query}
        return render(request, "pages/list.html", context)
+
+def main(request):
+    return HttpResponse("Type /events/home/ to See Actual Site")
