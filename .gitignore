@@ -2,4 +2,5 @@ event_env/
 __pycache__/
 db.sqlite#
 node_modules/
-.env__pycache__/
+__pycache__/
+.env

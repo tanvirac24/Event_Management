@@ -4,14 +4,14 @@ from django.dispatch import receiver
 from django.core.mail import send_mail
 from events.models import Event
 # Create your models here.
-@receiver(m2m_changed,sender=Event.assigned_to.through)
-def notify_participant_on_event_creation(sender,instance,action,**kwargs):
-    if action=='post_add':
-        assigned_eamils=[emp.email for emp in instance.assigned_to.all()]
-        send_mail(
-            "New Event Has Launched",
-            f"You have been selected to the event:{instance.title} and Event Location:{instance.location}, Event Date:{instance.due_date}",
-            "tanvirac024@gmail.com",
-            assigned_eamils,
-            fail_silently=False,
-        )
+# @receiver(m2m_changed,sender=Event.assigned_to.through)
+# def notify_participant_on_event_creation(sender,instance,action,**kwargs):
+#     if action=='post_add':
+#         assigned_eamils=[emp.email for emp in instance.assigned_to.all()]
+#         send_mail(
+#             "New Event Has Launched",
+#             f"You have been selected to the event:{instance.title} and Event Location:{instance.location}, Event Date:{instance.due_date}",
+#             "x",
+#             assigned_eamils,
+#             fail_silently=False,
+#         )
