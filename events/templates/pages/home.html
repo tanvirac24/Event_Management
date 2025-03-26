@@ -25,7 +25,7 @@
                 </div>
             </div> 
         
-            <a href="{% url "home" %}">
+            <a href="{% url "homet" %}">
             <div class="cart-2  bg-white p-4 shadow-sm">
                 <h3 class="text-xl font-medium text-gray-500 mb-4">Total Events.</h3>
                 <div class="flex justify-between">
@@ -45,7 +45,7 @@
             </div>
             
          </a>
-        <a href="{% url "home" %}?type=upcoming">
+        <a href="{% url "homet" %}?type=upcoming">
             <div class="cart-3  bg-white p-4 shadow-sm">
                 <h3 class="text-xl font-medium text-gray-500 mb-4">Upcoming Events</h3>
                 <div class="flex justify-between">
@@ -65,7 +65,7 @@
             </div>
            
         </a>
-            <a href="{% url "home" %}?type=ended">
+            <a href="{% url "homet" %}?type=ended">
                 <div class="cart-4  bg-white p-4 shadow-sm">
                     <h3 class="text-xl font-medium text-gray-500 mb-4">Past Events.</h3>
                     <div class="flex justify-between">
@@ -93,7 +93,7 @@
         
         
         </a>
-            <a href="{% url "home" %}?type=running">
+            <a href="{% url "homet" %}?type=running">
                 <div class="cart-4  bg-white p-4 shadow-sm">
                     <h3 class="text-xl font-medium text-gray-500 mb-4">Today's Event</h3>
                     <div class="flex justify-between">
@@ -118,8 +118,8 @@
             </a>    
         </div>
             
-            <div class="mx-5 flex justify-center font-semibold text-3xl bg-orange-500  p-2 mt-2 text-white mb-2 shadow-xl">
-               Events
+            <div class="mx-5 flex justify-center font-semibold text-3xl bg-teal-700  p-2 mt-2 text-white mb-2 shadow-xl">
+               {{typed|default:"Total Events"|upper}}
             </div>
 
     <div class="table-container bg-white  shadow-sm mx-5 border-b border-gray-100 text-sm mb-6">

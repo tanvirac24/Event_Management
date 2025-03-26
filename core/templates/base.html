@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EventMaster - Efficient Event Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="font-sans bg-gray-200">
+    {% if request.user.is_authenticated %}
+    {% include "loged_nav.html" %}
+    {% else %}
+    {% include "non_loged_nav.html" %}
+    {% endif %}
+    <main>
+     {% block content %}
+     
+     {% endblock content %}
+    </main>
+
+    
+
+    <script>
+      document
+        .getElementById("menu-toggle")
+        .addEventListener("click", function () {
+          document.getElementById("mobile-menu").classList.toggle("hidden");
+        });
+
+      document
+        .getElementById("user-menu-button")
+        .addEventListener("click", function () {
+          document.getElementById("user-menu").classList.toggle("hidden");
+        });
+
+      // Close the dropdown when clicking outside
+      window.addEventListener("click", function (e) {
+        if (!document.getElementById("user-menu-button").contains(e.target)) {
+          document.getElementById("user-menu").classList.add("hidden");
+        }
+      });
+    </script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} {% extends "pages/dashboard.html" %}
+{% load static %}
+{% block title %}SIGN IN(USERS){% endblock title %}
+{% block participants %}
+    <h1>Welcome To Home</h1>
+
+    {% if user.is_authenticated %}
+    {{user}}
+    <form action="{% url 'signout'%}" method='POST'>
+        {% csrf_token %}
+        <button type='submit'>Log Out</button>
+    </form>
+    {% else %}
+    <p>Anonymous</p>
+    
+    {% endif %}
+    
+</body>
+</html>
+
+{% endblock participants %} {% endcomment %}

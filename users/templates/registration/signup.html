@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class=" text-7xl"><p class=" flex justify-center font-bold">SIGN UP</p></div>
+    <div class="table-container bg-white  drop-shadow-xs mx-7 my-10 border-b border-gray-100 text-gray-500 mb-2">
+    
+        <div class="">
+            {% if message %}
+            <p class="m-20 bg-rose-600 text-white font-bold px-2 py-1">{{message}}!</p>
+            {% endif %}
+        </div>
+    
+        
+
+    <div class="mx-auto w-2/3">
+        {% if form.non_field_errors%}
+            {% for eror in form.non_field_errors%}
+            <p class="bg-red-400 text-white font-bold text-2xl">{{eror}}</p>
+            {% endfor %}
+        {% endif %}
+        <form method='POST'>
+            {% csrf_token %}
+            <div class=" p-20 font-semibold">
+            {% for field in form %}
+           <p>
+            <label for="{{field.id_for_label}}">{{field.label}}</label>
+            {{field}}
+           
+            {% if field.errors %}
+            <ul>
+                {% for eror in field.errors %}
+                <li class="text-red-400">{{eror}}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </p>
+            {% endfor %}
+        
+       
+           {% comment %} <div class=" p-20 font-semibold">{{form}}</div> {% endcomment %}
+          
+            <button class="mx-auto mb-10 px-2 py-1 bg-blue-200 text-blue-600 text-2xl font-semibold" type="submit">Submit</button>
+           
+           </div>
+    
+    
+        </form>
+    </div>
+    
+    {% endblock content %}
