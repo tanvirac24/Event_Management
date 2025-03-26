@@ -3,21 +3,35 @@
 {% block title %}Details{% endblock title %}
 {% block detail %}
 
-  <div class="mx-7 mb-4 mt-7 text-3xl font-bold">
+  {% comment %} <div class="mx-7 mb-4 mt-7 text-3xl font-bold">
     <h1>{{event.title}}</h1>
   </div>
   <div class="mx-7 mb-7 border-2 border-indigo-300 rounded">
     <img src="{% static 'images/im1.jpg' %}" alt="" class="w-full h-80">
+  </div> {% endcomment %}
+  <div class="table-container bg-white  drop-shadow-xs mx-7 border-b border-gray-100 text-gray-500 mb-2">
+    <div class="flex justify-between mx-7 mb-4 mt-7 py-2 text-sm  font-bold">
+        <div class="text-3xl">
+            <h1>{{event.title}}</h1>
+          </div>
+          <div class="px-2 py-1 bg-teal-500 text-green-200 flex justify-center">
+            {{event.status}}
+          </div>
+    </div>
+      <div class="mx-7 mb-7 border-2 border-gray-400 shadow-sm">
+        <img src="{{event.asset.url}}" alt="" class="w-full h-1/2">
+      </div>
   </div>
   
  
 
-   <div class="mx-7 mb-2 text-3xl font-bold">
-    <h1>Details:</h1>
-  </div>
+   
   <div class="table-container bg-white  drop-shadow-xs mx-7 border-b border-gray-100 text-gray-500 mb-2">
+    <div class="px-4 py-2 text-3xl font-bold">
+        <h1>Details:</h1>
+      </div>
  {% comment %} 200words {% endcomment %}
- <p class="p-4">{{event.description}}</p>
+ <p class="px-4 py-2">{{event.description}}</p>
 
 </div>
 <div class="w-2/3 mx-5">
@@ -84,16 +98,17 @@
 
     </div>
    </div> 
-   <div class="mx-7 mb-3 text-3xl font-bold">
-    <h1>All Participants:</h1></div>
-   <div class="cart-container p-6 grid grid-cols-4 gap-5 mb-8 table-container bg-white  drop-shadow-xs mx-7  border-gray-100 text-gray-500 mb-2">
+   <div class=" mb-8 table-container bg-white  drop-shadow-xs mx-7  border-gray-100 text-gray-500" >
+    <h1 class="p-4 text-3xl font-bold">Participants:</h1>
+   <div class="mx-7  px-4 py-4 grid grid-cols-4 gap-5 text-xl">
     {% for participant in event.assigned_to.all %}
-        <p>{{ participant.name }}</p>
+        <p>({{forloop.counter}}) {{ participant.first_name }}</p>
     {% empty %}
         <p>Bro, There is No Participant</p>
     {% endfor %}
     
     
     </div>
-
+</div>
+ 
 {% endblock detail%}

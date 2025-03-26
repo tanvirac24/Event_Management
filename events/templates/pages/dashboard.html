@@ -9,21 +9,29 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="{% static 'css/output.css' %}">
+        {% comment %} <link rel="stylesheet" href="{% static 'css/output.css' %}"> {% endcomment %}
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
         
 </head>
 <body class="bg-gray-200"> 
     <header class="bg-white shadow-sm sticky z-50 top-0">
-        <nav class="">
-            <div class="mx-auto flex justify-between ">
-                <div class="w-2/5 mx-7 mt-7 mb-1 font-bold text-3xl">Event Management</div>
-                <div class="w-3/5 mt-4">
-                    <div class="mx-7 flex justify-between font-semibold text-lg   p-2  text-blue-600">
-                        <div class="p-1 bg-blue-200 rounded-md"><button><a href="{% url 'home' %}">Home</a></button></div>
-                    <div class="px-3 py-1 bg-blue-200 rounded-md"><button><a href="{% url 'list' %}">All Events</a></button></div>
-                    <div class="px-3 py-1 bg-blue-200 rounded-md"><button><a href="{% url 'adde' %}">Add Event</a></button></div>
-                    <div class="px-3 py-1 bg-blue-200 rounded-md"><button><a href="{% url 'person' %}">Participant SignUp</a></button></div>
-                </div>
+        <nav class="container mx-auto px-1 py-1">
+            <div class="flex items-center justify-between ">
+                <div class="w-2/5 mx-4 mt-4 mb-1 font-bold text-3xl">Event Management</div>
+                <div class="w-3/5 mt-2">
+                    <div class="flex gap-1 mx-4 justify-end font-semibold text-lg    text-white">
+                        <div class="p-1 px-3 bg-black "><button><a href="{% url 'homet' %}">Home</a></button></div>
+                    <div class="px-3 py-1  bg-black "><button><a href="{% url 'list' %}">All Events</a></button></div>
+                    
+                    <form method="post" action="{% url 'signout'%}">
+                        {% csrf_token %}
+                        <button
+                          class="px-3 py-1  bg-black"
+                        >
+                          Logout
+                        </button>
+                      </form>
+                   </div>
                 </div>
             </div>
         </nav>

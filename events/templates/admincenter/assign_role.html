@@ -1,0 +1,26 @@
+{% extends "admincenter/admin_dash.html" %}
+{% load static %}
+{% block title %}Assign Role{% endblock title %}
+{% block content %}
+<div class=" text-7xl"><p class=" flex justify-center font-bold">ASSIGN ROLE</p></div>
+
+
+    <div class="mx-auto w-2/3">
+        <form method='POST'>
+            {% csrf_token %}
+           <div class=" p-20 font-semibold">
+            <label for="{{ form.role.id_for_label }}" class="font-semibold">Assign As:</label>
+            {{form.role}}
+
+
+           </div>
+           <div class="mb-10">
+            <button class="mx-20  px-2 py-1 bg-blue-200 text-blue-600 text-xl font-semibold" type="submit">Assign</button>
+           
+           </div>
+    
+    
+        </form>
+    </div>
+
+{% endblock content%}

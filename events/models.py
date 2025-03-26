@@ -1,16 +1,19 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 from datetime import date
 
 # Create your models here.
-class persons(models.Model):
-    name=models.CharField(max_length=100)
-    email=models.EmailField(unique=True)
+# class persons(models.Model):
+#     username=models.CharField(max_length=100,unique=True,null=True)
+#     name=models.CharField(max_length=100)
+#     last_name=models.CharField(max_length=100,null=True)
+#     password=models.CharField(max_length=100,null=True)
+#     email=models.EmailField(unique=True)
     
 
 #after 6.4
-    def __str__(self):
-        return self.name
+    # def __str__(self):
+    #     return self.name
 
 class Event(models.Model):
     STATUS_CHOICES=[
@@ -24,8 +27,10 @@ class Event(models.Model):
         default=1
     )
     
-    assigned_to=models.ManyToManyField(persons,related_name='events')
+    # assigned_to=models.ManyToManyField(persons,related_name='events')
+    assigned_to=models.ManyToManyField(User,related_name='events')
     title=models.CharField(max_length=250)
+    asset=models.ImageField(upload_to='events_asset',blank=True,null=True,default="events_asset/common.jpg")
     description= models.TextField()
     location=models.CharField(max_length=350)
     due_date=models.DateField()
@@ -70,6 +75,19 @@ class Catagory(models.Model):
     def __str__(self):
         return self.name
     
+
+# @receiver(post_save,sender=Event)
+# def notify_participant_on_event_creation(sender,instance,created,**kwargs):
+#     if created:
+#         assigned_eamils=[emp.email for emp in instance.assigned_to.all()]
+#         send_mail(
+#             "New Event Has Launched",
+#             f"You have been selected to the event:{instance.title}",
+#             "tanvirac024@gmail.com",
+#             assigned_eamils,
+#             fail_silently=False,
+#         )
+
 
 
 

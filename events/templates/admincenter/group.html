@@ -1,0 +1,42 @@
+{% extends "admincenter/admin_dash.html" %}
+{% load static %}
+{% block title %}Groups{% endblock title %}
+{% block content %}
+    <div class=" text-7xl"><p class=" flex justify-center font-bold">GROUPS</p></div>
+    <div class="table-container bg-white  drop-shadow-xs mx-7 my-10 border-b border-gray-100 text-gray-500 mb-2">
+    
+        <main class="w-2/3 mx-auto mt-8">
+            <h2 class="text-2xl font-bold p-4 flex justify-center">Groups and Permissions</h2>
+            <div class="overflow-x-auto">
+              <table class="table-auto w-full border-collapse border border-gray-300 mb-4">
+                <thead>
+                  <tr class="bg-teal-600 text-white">
+                    <th class="border border-gray-300 px-4 py-2">Group Name</th>
+                    <th class="border border-gray-300 px-4 py-2">Permissions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Example group data -->
+                  {% for grop in group %}
+                  <tr class="odd:bg-white even:bg-gray-100">
+                    <td class="border border-gray-300 px-4 py-2 font-medium">
+                      {{grop.name}}
+                    </td>
+                    <td class="border border-gray-300 px-4 py-2">
+                      <ul class="list-disc list-inside">
+                        {% for permission in  grop.permissions.all%}
+                        <li>{{permission.name}}|{{permission.codename}}</li>
+                        {% empty%}
+                        <span>No Permissions Assigned</span>
+                        {% endfor %}
+                      </ul>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </main>
+    </div>
+    
+{% endblock content %}

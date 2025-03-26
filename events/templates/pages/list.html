@@ -23,7 +23,7 @@
     
     <div class="flex justify-between px-4">
       <div class="w-2/5 border-r-2 p-2">
-          <a href="{% url 'details' e.id %}"><img src="{% static 'images/im2.jpg' %}" alt=""></a>
+          <a href="{% url 'details' e.id %}"><img src="{{e.asset.url}}" alt=""></a>
       </div>
       
       <div class="w-3/5 p-2">
@@ -31,20 +31,20 @@
           <a href="{% url 'details' e.id %}"><div class="flex justify-between">
 
                 <div class="text-xl font-bold ">{{e.title|slice:':25'}}</div>
-                <div class="flex">
-                    <div class="bg-teal-500 text-white px-1 py-1 text-lg font-semibold  mb-1 mx-1 shadow-lg"><a href="{% url 'update' e.id%}"> Update</a></div>
+                
+                   {% comment %} RSPV Section {% endcomment %}
                     <div class="bg-red-800 text-white font-semibold px-1 py-1 text-lg   mb-1 shadow-lg">
-                        <form action="{% url 'delete' e.id %}" method='POST'>
+                        <form action="{% url 'rsvp' e.id %}" method='POST'>
                             {% csrf_token %}
-                            <button> Delete</button>
+                            <button>RSPV</button>
                         </form>
                         
-                    </div>
+                    
                 
                
             </div>
           </div></a>
-          <div class="text-sm"><p>{{e.description |slice:':288'}}</p></div>
+          <div class="text-sm"><p>{{e.description |slice:':230'}}....</p></div>
           <div class="p-1 gap-10  mx-auto mb-4 absolute bottom-0 flex justify-between ">
           
           
