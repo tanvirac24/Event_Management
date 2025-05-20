@@ -93,16 +93,26 @@ WSGI_APPLICATION = 'event_manage.wsgi.application'
 #     }
 # }
 
-
-
-
 DATABASES = {
-    'default': dj_database_url.config(
-        # Replace this value with your local database's connection string.
-        default='postgresql://event_management_db_cd4h_user:jpscZBd0yWON0m0ldnsXGY5ffwY32kvQ@dpg-cvahj8qj1k6c738shun0-a.oregon-postgres.render.com/event_management_db_cd4h',
-        conn_max_age=600
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('DB_NAME',default=''),
+        'USER': config('DB_USER',default=''),
+        'PASSWORD': config('DB_PASSWORD',default=''),
+        'HOST': config('DB_HOST',default='localhost'),
+        'PORT': config('DB_PORT',cast=int)
+    }
 }
+
+
+
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         # Replace this value with your local database's connection string.
+#         default='postgresql://event_management_db_cd4h_user:jpscZBd0yWON0m0ldnsXGY5ffwY32kvQ@dpg-cvahj8qj1k6c738shun0-a.oregon-postgres.render.com/event_management_db_cd4h',
+#         conn_max_age=600
+#     )
+# }
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
@@ -127,7 +137,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Dhaka'
 
 USE_I18N = True
 
@@ -160,6 +170,9 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD =config('EMAIL_HOST_PASSWORD')
 
 # FRONTEND_URL = 'http://127.0.0.1:8000'
-FRONTEND_URL = 'https://event-management-pxnx.onrender.com'
+# FRONTEND_URL = 'https://event-management-pxnx.onrender.com'
+FRONTEND_URL = 'http://127.0.0.1:8000/'
 
-LOGIN_URL='signin'
+LOGIN_URL='/users/sign_in/'
+LOGIN_REDIRECT_URL='/events/homet/'
+LOGOUT_REDIRECT_URL='/'

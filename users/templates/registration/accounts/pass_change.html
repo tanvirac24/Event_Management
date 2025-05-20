@@ -1,0 +1,149 @@
+
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Profile</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+  <!-- Header -->
+  <header class="bg-white shadow-sm sticky z-50 top-0">
+    <nav class="container mx-auto px-1 py-1">
+        <div class="flex items-center justify-between ">
+            <div class="w-2/5 mx-4 mt-4 mb-1 font-bold text-3xl">Event Management</div>
+            <div class="w-3/5 mt-2">
+                <div class="flex gap-1 mx-4 justify-end font-semibold text-lg    text-white">
+                    <div class="p-1 px-3 bg-black "><button><a href="{% url 'admin-dash' %}">Admin Gateway</a></button></div>
+                <div class="px-3 py-1  bg-black "><button><a href="{% url 'list' %}">Participant Gateway</a></button></div>
+                <div class="px-3 py-1  bg-black "><button><a href="{% url 'orz-list' %}">Organizer Gateway</a></button></div>
+                <div class="flex items-center">
+            <div class="relative">
+              <button
+                id="user-menu-button"
+                class="flex items-center focus:outline-none mx-2"
+              >
+               {% if user.userprofile.profile_image %}
+                  <img src="{{ user.userprofile.profile_image.url }}" alt="Profile Image" class="h-10 w-10 rounded-full object-cover ">
+                        {% else %}
+                          <img src="{% static 'images/im1.jpg' %}" alt="Default Profile Image" class="h-10 w-10 rounded-full object-cover ">
+              {% endif %}
+              </button>
+              <div
+                id="user-menu"
+                class="absolute right-0 mt-2 w-48 bg-gray-400  shadow-lg py-1 hidden"
+              >
+                <a
+                  href="{%url 'profile' %}"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >Profile</a
+                >
+                <form method="post" action="{% url 'signout'%}">
+                  {% csrf_token %}
+                  <button
+                    class=" px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >
+                    Logout
+                  </button>
+                </form>
+              </div>
+            </div>
+            <div class="md:hidden ml-4">
+              <button
+                id="menu-toggle"
+                class="text-gray-600 hover:text-gray-800 focus:outline-none"
+              >
+                <svg
+                  class="h-6 w-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 12h16m-7 6h7"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+                
+               </div>
+            </div>
+        </div>
+    </nav>
+
+</header>
+  <main>
+        <div class=" text-7xl"><p class=" flex justify-center font-bold">Change Password!</p></div>
+    <div class="table-container bg-white  drop-shadow-xs mx-7 my-10 border-b border-gray-100 text-gray-500 mb-2">
+    
+     <div class="">
+        {% if messages %}
+        {% for message in messages  %}
+        <div class="m-20  text-white font-bold px-2 py-1 {% if message.tags == 'success'%} bg-red-500{% endif %}">{{message}}</div>
+        
+        {% endfor %}
+        
+        {% endif %} 
+        
+        </div>
+    
+        
+
+    <div class="mx-auto w-2/3">
+       
+        
+        <form method='POST'>
+            {% csrf_token %}
+            <div class=" p-20 font-semibold">
+            {% for field in form %}
+           <p>
+            <label for="{{field.id_for_label}}" >{{field.label}}</label>
+            {{field}}
+           
+          
+        </p>
+            {% endfor %}
+        
+       
+           {% comment %} <div class=" p-20 font-semibold">{{form}}</div> {% endcomment %}
+          
+            <button class="mx-auto mb-10 px-2 py-1 bg-blue-200 text-blue-600 text-2xl font-semibold" type="submit">Submit</button>
+           
+           </div>
+    
+    
+        </form>
+    </div>
+  </main>
+    <script>
+      document
+        .getElementById("menu-toggle")
+        .addEventListener("click", function () {
+          document.getElementById("mobile-menu").classList.toggle("hidden");
+        });
+
+      document
+        .getElementById("user-menu-button")
+        .addEventListener("click", function () {
+          document.getElementById("user-menu").classList.toggle("hidden");
+        });
+
+      // Close the dropdown when clicking outside
+      window.addEventListener("click", function (e) {
+        if (!document.getElementById("user-menu-button").contains(e.target)) {
+          document.getElementById("user-menu").classList.add("hidden");
+        }
+      });
+    </script>
+</body>
+
+

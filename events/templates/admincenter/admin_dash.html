@@ -5,7 +5,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %}Document{% endblock title %}</title>
+    <title>{% block title %}Admin Panel{% endblock title %}</title>
     <link rel="stylesheet" href="css/output.css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
@@ -20,7 +20,7 @@
             <a
               href="{%url 'admin-dash'%}"
               class="text-gray-600 hover:text-gray-800"
-              >Dashboard</a
+              >Admin-Dashboard</a
             >
             <a href="{%url 'orz-list'%}" class="text-gray-600 hover:text-gray-800">Events</a>
             <a href="{%url 'group' %}" class="text-gray-600 hover:text-gray-800"
@@ -39,20 +39,20 @@
                 id="user-menu-button"
                 class="flex items-center focus:outline-none"
               >
-                <img
-                  class="h-8 w-8 rounded-full object-cover"
-                  src="{% static 'images/im1.jpg' %}"
-                  alt="User avatar"
-                />
+                {% if user.userprofile.profile_image %}
+                  <img src="{{ user.userprofile.profile_image.url }}" alt="Profile Image" class="h-10 w-10 border-2 border-gray-800 rounded-full object-cover ">
+                        {% else %}
+                          <img src="{% static 'images/im1.jpg' %}" alt="Default Profile Image" class="h-10 w-10 border-2 border-gray-800 rounded-full object-cover">
+              {% endif %}
               </button>
               <div
                 id="user-menu"
-                class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 hidden"
+                class="absolute right-0 mt-2 w-48  bg-gray-400  shadow-lg py-1 hidden"
               >
                 <a
-                  href="{%url 'admin-dash' %}"
+                  href="{%url 'profile' %}"
                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  >Dashboard</a
+                  >Profile</a
                 >
                 <form method="post" action="{% url 'signout'%}">
                   {% csrf_token %}
@@ -99,7 +99,7 @@
         
         <div id="mobile-menu" class="md:hidden hidden mt-4">
           <a href="#" class="block py-2 text-gray-600 hover:text-gray-800"
-            >Dashboard</a
+            >Admin Dashboard</a
           >
           <a href="#" class="block py-2 text-gray-600 hover:text-gray-800"
             >Tasks</a

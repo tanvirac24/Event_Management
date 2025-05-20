@@ -6,8 +6,10 @@
     <div class="table-container bg-white  drop-shadow-xs mx-7 my-10 border-b border-gray-100 text-gray-500 mb-2">
         
         <div class="">
-            {% if message %}
+            {% if messages %}
+            {% for message in messages  %}
             <p class="m-20 bg-green-600 text-white font-bold px-2 py-1">{{message}}!</p>
+            {% endfor %}
             {% endif %}
         </div>
         

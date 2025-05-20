@@ -5,6 +5,7 @@ from django.contrib.auth.models import User,Group
 from django.contrib.auth.tokens import default_token_generator
 from events.models import Event
 from django.conf import settings
+from users.models import UserProfile
 
 
 @receiver(post_save,sender=User)
@@ -28,3 +29,8 @@ def assign_role(sender,instance,created,**kwargs):
         instance.groups.add(user_group)
         instance.save()
 
+@receiver(post_save,sender=User)
+def create_or_update_user_profile(sender,instance,created,**kwargs):
+    if created:
+        UserProfile.objects.create(user=instance)
+    

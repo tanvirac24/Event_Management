@@ -1,3 +1,4 @@
+{% load static %}
 <header class="bg-white shadow-sm sticky z-50 top-0">
     <nav class="container mx-auto px-1 py-1">
         <div class="flex items-center justify-between ">
@@ -7,16 +8,64 @@
                     <div class="p-1 px-3 bg-black "><button><a href="{% url 'admin-dash' %}">Admin Gateway</a></button></div>
                 <div class="px-3 py-1  bg-black "><button><a href="{% url 'list' %}">Participant Gateway</a></button></div>
                 <div class="px-3 py-1  bg-black "><button><a href="{% url 'orz-list' %}">Organizer Gateway</a></button></div>
+                <div class="flex items-center">
+            <div class="relative">
+              <button
+                id="user-menu-button"
+                class="flex items-center focus:outline-none mx-2"
+              >
+               {% if user.userprofile.profile_image %}
+                  <img src="{{ user.userprofile.profile_image.url }}" alt="Profile Image" class="h-10 w-10 rounded-full border-2 border-gray-800 object-cover ">
+                        {% else %}
+                          <img src="{% static 'images/im1.jpg' %}" alt="Default Profile Image" class="h-10 w-10 rounded-full border-2 border-gray-800 object-cover ">
+              {% endif %}
+              </button>
+              <div
+                id="user-menu"
+                class="absolute right-0 mt-2 w-48 bg-gray-400  shadow-lg py-1 hidden"
+              >
+                <a
+                  href="{%url 'profile' %}"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >Profile</a
+                >
                 <form method="post" action="{% url 'signout'%}">
-                    {% csrf_token %}
-                    <button
-                      class="px-3 py-1  bg-black"
-                    >
-                      Logout
-                    </button>
-                  </form>
+                  {% csrf_token %}
+                  <button
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >
+                    Logout
+                  </button>
+                </form>
+              </div>
+            </div>
+            <div class="md:hidden ml-4">
+              <button
+                id="menu-toggle"
+                class="text-gray-600 hover:text-gray-800 focus:outline-none"
+              >
+                <svg
+                  class="h-6 w-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 12h16m-7 6h7"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+                
                </div>
             </div>
         </div>
     </nav>
+
 </header>
